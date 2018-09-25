@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <title>Kniskern Game of Life Web App</title>
+    <link rel="stylesheet" type="text/css" href="project.css">
+  </head>
+  <body>
+    <div id="main">
+      <div id="openBtn" onclick="openNav()">Settings</div>
+      <canvas id="canvas">
+        Please update your browser to see this content
+      </canvas>
+    </div>
+    <div id="controls"class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <input class="controller" id="startButton" type="button" value="Start"/><br/>
+      <input class="controller" id="stopButton" type="button" value="Stop"/><br/>
+      <input class="controller" id="next" type="button" value="Next"/><br/>
+      <input class="controller" id="clear" type="button" value="Clear"/><br/>
+      <input class="controller" id="random" type="button" value="Random"/><br/>
+      <label  for="cyclic">Cyclic</label>
+        <input class="controller" type ="checkbox" id="cyclic">
+    </div>
+    
+  </body>
+  <script src="app.js"></script>
+</html>

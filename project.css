@@ -1,0 +1,70 @@
+html, body {
+  overflow: hidden;
+  margin: 0;
+  background-color: gray;
+}	
+
+#canvas {
+  width: 100vw;
+  height: 100vh;
+  display: block;
+}
+
+#controls {
+  text-align: left;
+}
+
+.controller {
+  margin-top: 10px;
+  color: black;
+  border: none;
+  padding: 5px;
+  width: 115px;
+  transition-duration: 0.4s;
+}
+
+.controller:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/*https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav_push*/
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: gray;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 30px;
+}
+.sidenav .closebtn {
+  position: absolute;
+  color: black;
+  font-weight: bold;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 10px;
+  text-decoration: none;
+}
+
+#openBtn {
+  position: fixed;
+  font-family: sans-serif;
+  top: 20;
+  left: 20;
+  height: fit-content;
+  width: fit-content;
+  padding: 10px;
+  z-index: 1;
+  color: white;
+  background-color: rgba(45, 36, 36, .5);
+}
+
+#main {
+  transition: margin-left .5s;
+  z-index: -1;
+}
