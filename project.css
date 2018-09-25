@@ -1,7 +1,7 @@
 html, body {
   overflow: hidden;
   margin: 0;
-  background-color: gray;
+  background-color: beige;
 }	
 
 #canvas {
@@ -17,6 +17,7 @@ html, body {
 .controller {
   margin-top: 10px;
   color: black;
+  background-color: white;
   border: none;
   padding: 5px;
   width: 115px;
@@ -36,7 +37,7 @@ html, body {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: gray;
+  background-color: beige;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 30px;

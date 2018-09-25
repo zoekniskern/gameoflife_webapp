@@ -76,9 +76,21 @@ function random(){
   }
 }
 
-function setEdge(){
-
+function getMouse(e){
+  var mouse = {} //make object
+  mouse.x = e.pageX - e.target.offsetLeft;
+  mouse.y = e.pageY - e.target.offsetTop;
+  return mouse;
 }
+
+function cellClicked(x,y, point){
+  if(cellWidth <= 0 || cellWidth <=0 ){
+    return false;
+  }
+
+  return (point.x >= x && point.x <= x + cellWidth && point.y >= y && point.y <= y + cellWidth);
+}
+
 //end Control functions/////////////////////////////////////
 
 function updateCanvasSize() {
@@ -102,6 +114,22 @@ function updateCanvasSize() {
       row[i] = (Math.random() < 0.25) ? 1 : 0;
     }
   }
+
+  document.addEventListener('click', function(e) {
+    var mouse = getMouse(e);
+    console.log("mouse clicked at " + mouse.x + "," + mouse.y);
+
+    console.log(cellClicked(400,400,mouse));
+
+    for(let y = 0; y < cells.rows; y++) {
+      for(let x = 0; x < cells.cols; x++) {
+        if(cellClicked(x,y,mouse)){
+          cells.data[y][x] += 1
+          console.log("inside loops ran");
+        }
+      }
+    }
+  })
 }
 updateCanvasSize();
 
@@ -139,11 +167,25 @@ function processRule(grid, row, col) {
 
     if(currentCell == 1) {
       if(liveNeighbors >= 4 || liveNeighbors <= 1) {
-        result = 0;
+        //result = 0;
+        if(result = 0){
+          result = 0;
+        }
+        else{
+            result += -1;
+        }
       }
     } else if (liveNeighbors == 3) { 
-      result = 1;
+      //result = 1;
+      if(result < 5){
+        result += 1;
+      }
+      else if(result == 5){
+        result = 0;
+      }
     }
+
+    return result;
   }else{ ///constant edge
     liveNeighbors += grid.data[(row - 1 + cells.rows) % cells.rows][(col - 1 + cells.cols) % cells.cols];
     liveNeighbors += grid.data[(row - 1 + cells.rows) % cells.rows][col];
@@ -159,17 +201,29 @@ function processRule(grid, row, col) {
 
     if(currentCell == 1) {
       if(liveNeighbors >= 4 || liveNeighbors <= 1) {
-        result = 0;
+        //result = 0;
+        if(result = 0){
+          result = 0;
+        }
+        else{
+            result += -1;
+        }
       }
     } else if (liveNeighbors == 3) { 
+      //result = 1;
       result = 1;
+      if(result < 5){
+        result += 1;
+      }
+      else if(result = 5){
+        result = 0;
+      }
     } 
 
     return result;
   }
-   
 
-  return result;
+
 }
 
 function computeNextGeneration() {
@@ -196,15 +250,45 @@ function computeNextGeneration() {
 }
 
 function draw(timeStamp) {
-  ctx.fillStyle = 'white';
+  ctx.fillStyle = 'lightblue';
   ctx.fillRect(0,0,w,h);
 
   // draw current generation of cells 
-  ctx.fillStyle = 'black';
+  ctx.fillStyle = 'lightgreen';
   for(let y = 0; y < cells.rows; y++) {
     for(let x = 0; x < cells.cols; x++) {
 
       if(cells.data[y][x] == 1) {
+        ctx.fillRect(x * cellWidth, y * cellWidth, cellWidth, cellWidth); 
+      }
+    }
+  }
+
+  ctx.fillStyle = 'limegreen';
+  for(let y = 0; y < cells.rows; y++) {
+    for(let x = 0; x < cells.cols; x++) {
+
+      if(cells.data[y][x] == 2) {
+        ctx.fillRect(x * cellWidth, y * cellWidth, cellWidth, cellWidth); 
+      }
+    }
+  }
+
+  ctx.fillStyle = 'green';
+  for(let y = 0; y < cells.rows; y++) {
+    for(let x = 0; x < cells.cols; x++) {
+
+      if(cells.data[y][x] == 3) {
+        ctx.fillRect(x * cellWidth, y * cellWidth, cellWidth, cellWidth); 
+      }
+    }
+  }
+
+  ctx.fillStyle = 'darkgreen';
+  for(let y = 0; y < cells.rows; y++) {
+    for(let x = 0; x < cells.cols; x++) {
+
+      if(cells.data[y][x] == 4) {
         ctx.fillRect(x * cellWidth, y * cellWidth, cellWidth, cellWidth); 
       }
     }
